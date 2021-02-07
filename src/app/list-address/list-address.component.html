@@ -1,0 +1,103 @@
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Address</th>
+            <th scope="col">Number</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Cep</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dataItem of addresses" >
+              <td class="align-left" style="width: 5%;">
+                <button (click)="Open(dataItem.idaddress)" class="btn btn-sm btn-ghost-success" type="button">{{ dataItem.idaddress }}</button>  
+            </td>
+            <td class="align-left" style="width: 50%;">{{ dataItem.address }}</td>
+            <td class="align-left" style="width: 10%;">{{ dataItem.number }}</td>
+            <td class="align-left" style="width: 17%;">{{ dataItem.city }}</td>
+            <td class="align-left" style="width: 5%;">{{ dataItem.state }}</td>
+            <td class="align-left" style="width: 15%;">{{ dataItem.ZipCode }}</td>
+ 
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-outline-primary" routerLinkActive="active" (click)="openModal(template, 2)">New address</button>
+    </div>
+    </div>
+
+    <ng-template #template>
+      <form [formGroup]="formAdd" class="form-floating">
+
+
+        <div class="modal-header ">
+          <h4 class="modal-title pull-left">Register Address</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div style="padding-bottom: 5px;" class="row">        
+            <div class="col-md">
+                <div class="form-floating">
+                  <input type="idcontact" class="form-control" id="idcontact" value="1" readonly requerid formControlName="idcontact">
+                  <label for="idcontact">Id contact</label>
+                </div>
+              </div>
+          
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="ZipCode" class="form-control" id="ZipCode" requerid formControlName="ZipCode">
+                <label for="ZipCode">Cep</label>
+              </div>
+            </div>
+         </div>
+         <div style="padding-bottom: 5px;" class="row">        
+          <div class="col-md">
+              <div class="form-floating">
+                <input type="address" class="form-control" id="address"requerid formControlName="address">
+                <label for="address">Address</label>
+              </div>
+            </div>
+       </div>
+       <div style="padding-bottom: 5px;" class="row g-2">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="number" class="form-control" id="number" formControlName="number">
+            <label for="number">Number</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <select class="form-select" id="country" aria-label="Floating label select example" requerid formControlName="country">
+              <option selected>Select</option>
+              <option value="1">United States</option>
+              <option value="55">Brazil</option>
+              <option value="49">Germany</option>
+              <option value="27">South Africa</option>
+              
+            </select>
+            <label for="country">Country</label>
+          </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <select  class="form-select" id="state" aria-label="Floating label select example"requerid formControlName="state">
+                <option selected>Select</option>
+                <option value="SP">São Paulo</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="RJ">Rio de Janeiro</option>
+              </select>
+              <label for="state">State</label>
+            </div>
+          </div>
+
+      </div>
+      <button type="button" class="btn btn-outline-success" routerLinkActive="active" (click)="Save($event)">Save Address</button>
+      </div>
+    </form>
+  </ng-template>

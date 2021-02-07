@@ -1,0 +1,73 @@
+ <form  [formGroup]="form" class="form-floating"> 
+<div class="container-fluid">
+  <div *ngIf="!isVisible" class="alert alert-success" role="alert">
+    {{ mensagem }} 
+    </div>
+    <div *ngIf="!isVisibleError" class="alert alert-danger" role="alert">
+        {{ mensagem }}  
+    </div>
+    <br>
+    <div class="container-sm">
+           <div style="padding-bottom: 5px;" class="row g-1">        
+                <div class="col-md">
+                    <div class="form-floating">
+                      <input (blur)="checkDocument()"ype="text" class="form-control" id="document" placeholder="Document CPF/CNPJ" formControlName="Document" required>
+                      <label for="Document">Document</label>
+                    </div>
+                  </div>
+                  <div  style="padding-bottom: 10px; padding-top: 10px;" class="col-md d-md-flex justify-content-md-end">
+                    <button *ngIf="!isDocument" type="button" class="btn btn-outline-success" routerLinkActive="active" (click)="Save()">Save</button>
+                    <button *ngIf="!isDocument" type="button" class="btn btn-outline-danger" routerLinkActive="active" (click)="Delete()">Delete</button>
+                  </div>
+             </div>
+       <div *ngIf="!isDocument" >
+              
+            <div style="padding-bottom: 5px;" class="row g-2">
+                <div class="col-md">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="idcontact" formControlName="idcontact" readonly>
+                    <label for="idcontact">Id registration</label>
+                  </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" id="DateBirth" placeholder="Date of Birth" formControlName="DateBirth" required>
+                      <label for="DateBirth">Date of Birth</label>
+                    </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <select formControlName="GenderPerson" class="form-select" id="GenderPerson" aria-label="Floating label select example" required>
+                        <option selected>Select gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                        <option value="O">Other</option>
+                      </select>
+                      <label for="GenderPerson">Gender</label>
+                    </div>
+                  </div>
+
+            </div>
+    
+            <div style="padding-bottom: 5px;" class="row g-2">
+                <div class="col-md">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="Name" placeholder="Full name" formControlName="Name"required> 
+                    <label for="Name">Full name</label>
+                  </div>
+                </div>
+            </div>
+            <div *ngIf="!isViewFantasy" style="padding-bottom: 5px;" class="row g-2">
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="FantasyName" placeholder="Fantasy name" formControlName="FantasyName">
+                  <label for="FantasyName">Fantasy name</label>
+                </div>
+              </div>
+          </div>
+            <br>
+           <app-list-address [addresses]="addresses" [contact]="contact" (event)="onEvent($event)"></app-list-address>
+          </div>
+        </div>
+      </div> 
+      </form> 

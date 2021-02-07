@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    
+    <div *ngIf="!isVisible"class="alert alert-success" role="alert">
+        {{ mensagem }} 
+        </div>
+        <div *ngIf="!isVisibleError" class="alert alert-danger" role="alert">
+            {{ mensagem }}  
+        </div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Fantasy name</th>
+            <th scope="col">Document</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dataItem of contacts" >
+                <td class="align-left" style="width: 5%;">
+                    <button (click)="Open(dataItem.idcontact)" class="btn btn-sm btn-ghost-success" type="button">{{ dataItem.idcontact }}</button>  
+                </td>
+            <td class="align-left" style="width: 50%;">{{ dataItem.name }}</td>
+            <td class="align-left" style="width: 10%;">{{ dataItem.fantasyName }}</td>
+            <td class="align-left" style="width: 17%;">{{ dataItem.document }}</td>
+            <td class="align-left" style="width: 5%;">{{ dataItem.genderPerson }}</td>
+            <td class="align-left" style="width: 15%;">{{ dataItem.dateBirth | date: 'dd/MM/yyyy'}}</td>
+ 
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-outline-primary" routerLinkActive="active" [routerLink]="['/contact']">New contact</button>
+    </div>
+    </div>
